@@ -11,7 +11,17 @@
 
 <body>
     <div id="app">
-
+        <article class="post" v-for="post in posts" :key="post.id">
+            <h2 class="post__title">{{ post.title }}</h2>
+            <p class="post__text">{{ post.body }}</p>
+            <ul class="post__tags">
+                <li v-for="(tag, index) in post.tags" :key="index">{{ tag }}</li>
+            </ul>
+            <details>
+                <summary>{{ post.reactions }} comments</summary>
+                <div class="comments">Comments</div>
+            </details>
+        </article>
     </div>
     <script src="vue.js"></script>
     <script src="script.js"></script>
