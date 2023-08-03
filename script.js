@@ -28,7 +28,6 @@ createApp({
   data() {
     return {
       posts: [],
-      comments: [],
     };
   },
   async mounted() {
@@ -38,16 +37,22 @@ createApp({
     async fetchPosts() {
       const request = await fetch("https://dummyjson.com/posts");
       const jsonData = await request.json();
+
       this.posts = jsonData.posts;
       console.log(this.posts);
     },
-    async fetchCommentsByPost(postID) {
+    async fetchCommentsByPost(post) {
+      if (post.comments) {
+        return;
+      }
+
       const request = await fetch(
-        `https://dummyjson.com/comments/post/${postID}`
+        `https://dummyjson.com/comments/post/${post.id}`
       );
       const jsonData = await request.json();
-      this.comments = jsonData.comments;
-      console.log(this.comments);
+      post.comments = jsonData.comments;
+
+      console.log(post.comments);
     },
   },
 }).mount("#app");
