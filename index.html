@@ -17,11 +17,12 @@
             <ul class="post__tags">
                 <li v-for="(tag, index) in post.tags" :key="index">{{ tag }}</li>
             </ul>
-            <details @toggle="fetchCommentsByPost(post.id)">
+            <details @toggle="fetchCommentsByPost(post)">
                 <summary>{{ post.reactions }} comments</summary>
                 <div class="comments">
-                    <article class="comment" v-for="comment in comments" :key="comment.id">
-                        <p class="comment_text">{{ comment.body }}</p>
+                    <article class="comment" v-for="comment in post.comments" :key="comment.id">
+                        <p class="comment__text">{{ comment.body }}</p>
+                        <cite class="comment__user">{{ comment.user.username }}</cite>
                     </article>
                 </div>
             </details>
