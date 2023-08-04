@@ -13,29 +13,33 @@
     <div id="app">
         <header>
             <h1>{{ h1title }}</h1>
-            <input type="search" name="search-posts" id="search-posts" placeholder="Search for..." v-model="searchWord">
+            <input type="search" name="search-posts" id="search-posts" placeholder="Search for..." v-model="searchTerm"
+                @input="fetchPosts(`/search?q=${searchTerm}`)">
         </header>
         <main>
-            <article class="post" v-for="post in posts" :key="post.id">
-                <h2 class="post__title">{{ post.title }}</h2>
-                <p class="post__text">{{ post.body }}</p>
-                <ul class="post__tags">
-                    <li v-for="(tag, index) in post.tags" :key="index">{{ tag }}</li>
-                </ul>
-                <details @toggle="fetchCommentsByPost(post)">
-                    <summary>
-                        {{ post.reactions }}
-                        <span v-if="post.reactions === 0 || post.reactions > 1">Comments</span>
-                        <span v-else>Comment</span>
-                    </summary>
-                    <div class="comments">
-                        <article class="comment" v-for="comment in post.comments" :key="comment.id">
-                            <p class="comment__text">{{ comment.body }}</p>
-                            <cite class="comment__user">{{ comment.user.username }}</cite>
-                        </article>
-                    </div>
-                </details>
-            </article>
+            <h2 v-if="searchTerm !== ''">Posts containing the word "{{ searchTerm }}"</h2>
+            <div class="article-container">
+                <article class="post" v-for="post in posts" :key="post.id">
+                    <h2 class="post__title">{{ post.title }}</h2>
+                    <p class="post__text">{{ post.body }}</p>
+                    <ul class="post__tags">
+                        <li v-for="(tag, index) in post.tags" :key="index">{{ tag }}</li>
+                    </ul>
+                    <details @toggle="fetchCommentsByPost(post)">
+                        <summary>
+                            {{ post.reactions }}
+                            <span v-if="post.reactions === 0 || post.reactions > 1">Comments</span>
+                            <span v-else>Comment</span>
+                        </summary>
+                        <div class="comments">
+                            <article class="comment" v-for="comment in post.comments" :key="comment.id">
+                                <p class="comment__text">{{ comment.body }}</p>
+                                <cite class="comment__user">{{ comment.user.username }}</cite>
+                            </article>
+                        </div>
+                    </details>
+                </article>
+            </div>
         </main>
     </div>
     <script src="vue.js"></script>
