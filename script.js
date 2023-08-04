@@ -28,16 +28,16 @@ createApp({
   data() {
     return {
       h1title: "Posts-App",
-      searchWord: "",
+      searchTerm: "",
       posts: [],
     };
   },
   async mounted() {
-    await this.fetchPosts();
+    await this.fetchPosts("/");
   },
   methods: {
-    async fetchPosts() {
-      const request = await fetch("https://dummyjson.com/posts");
+    async fetchPosts(param) {
+      const request = await fetch("https://dummyjson.com/posts" + param);
       const jsonData = await request.json();
 
       this.posts = jsonData.posts;
