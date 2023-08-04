@@ -27,6 +27,7 @@ const { createApp } = Vue;
 createApp({
   data() {
     return {
+      h1title: "Posts-App",
       posts: [],
     };
   },
