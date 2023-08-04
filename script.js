@@ -28,6 +28,7 @@ createApp({
   data() {
     return {
       h1title: "Posts-App",
+      searchWord: "",
       posts: [],
     };
   },
