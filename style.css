@@ -14,11 +14,25 @@ body {
 }
 
 header {
-  display: flex;
-  justify-content: space-between;
+  _display: flex;
+  _justify-content: space-between;
   padding: 1rem 1.5rem;
   background-color: #0bade3;
   color: white;
+}
+
+input {
+  width: 100%;
+  font-size: 1.2rem;
+  padding: 0.5rem 0.75rem;
+  margin: 1rem 0;
+  border: none;
+  border-radius: 0.5rem;
+  box-shadow: 5px 5px 10px inset rgba(0, 0, 0, 0.15);
+}
+
+input::placeholder {
+  color: rgba(0, 0, 0, 0.15);
 }
 
 h1,
@@ -113,6 +127,18 @@ details > .comments {
 }
 
 @media screen and (min-width: 768px) {
+  header {
+    display: flex;
+    justify-content: space-between;
+    _padding: 1rem 1.5rem;
+    _background-color: #0bade3;
+    _color: white;
+  }
+
+  input {
+    width: 50%;
+  }
+
   main {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -133,5 +159,11 @@ details > .comments {
 @media screen and (min-width: 992px) {
   main {
     grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  main {
+    grid-template-columns: repeat(4, 1fr);
   }
 }
