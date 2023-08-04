@@ -11,22 +11,31 @@
 
 <body>
     <div id="app">
-        <article class="post" v-for="post in posts" :key="post.id">
-            <h2 class="post__title">{{ post.title }}</h2>
-            <p class="post__text">{{ post.body }}</p>
-            <ul class="post__tags">
-                <li v-for="(tag, index) in post.tags" :key="index">{{ tag }}</li>
-            </ul>
-            <details @toggle="fetchCommentsByPost(post)">
-                <summary>{{ post.reactions }} comments</summary>
-                <div class="comments">
-                    <article class="comment" v-for="comment in post.comments" :key="comment.id">
-                        <p class="comment__text">{{ comment.body }}</p>
-                        <cite class="comment__user">{{ comment.user.username }}</cite>
-                    </article>
-                </div>
-            </details>
-        </article>
+        <header>
+            <h1>{{ h1title }}</h1>
+        </header>
+        <main>
+            <article class="post" v-for="post in posts" :key="post.id">
+                <h2 class="post__title">{{ post.title }}</h2>
+                <p class="post__text">{{ post.body }}</p>
+                <ul class="post__tags">
+                    <li v-for="(tag, index) in post.tags" :key="index">{{ tag }}</li>
+                </ul>
+                <details @toggle="fetchCommentsByPost(post)">
+                    <summary>
+                        {{ post.reactions }}
+                        <span v-if="post.reactions === 0 || post.reactions > 1">Comments</span>
+                        <span v-else>Comment</span>
+                    </summary>
+                    <div class="comments">
+                        <article class="comment" v-for="comment in post.comments" :key="comment.id">
+                            <p class="comment__text">{{ comment.body }}</p>
+                            <cite class="comment__user">{{ comment.user.username }}</cite>
+                        </article>
+                    </div>
+                </details>
+            </article>
+        </main>
     </div>
     <script src="vue.js"></script>
     <script src="script.js"></script>
