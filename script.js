@@ -36,6 +36,7 @@ createApp({
   },
   async mounted() {
     await this.fetchPosts("/");
+    await this.fetchUsers();
   },
   methods: {
     async fetchPosts(param) {
@@ -57,6 +58,12 @@ createApp({
       post.comments = jsonData.comments;
 
       console.log(post.comments);
+    },
+    async fetchUsers() {
+      const request = await fetch("https://dummyjson.com/user");
+      const jsonData = await request.json();
+      this.users = jsonData.users;
+      console.log(this.users);
     },
   },
 }).mount("#app");
