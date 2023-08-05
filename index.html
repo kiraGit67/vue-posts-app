@@ -16,15 +16,17 @@
             <div class="header-row">
                 <input type="search" name="search-posts" id="search-posts" placeholder="Search for..."
                     v-model="searchTerm" @input="fetchPosts(`/search?q=${searchTerm}`)">
-                <select name="filter-by-user" id="filter-by-user" aria-placeholder="Filter by User" v-model="userID"
-                    @change="fetchPosts(`/user/${userID}`)">
-                    <option v-for="user in users" :key="user.id" :value="user.id">{{ user.id }}) {{ user.firstName }} {{
+                <select name="filter-by-user" id="filter-by-user" aria-placeholder="Filter by User" v-model="userData"
+                    @change="fetchPosts(`/user/${userData[0]}`)">
+                    <option v-for="user in users" :key="user.id" :value="[user.id, user.username]">{{ user.id }}) {{
+                        user.firstName }} {{
                         user.lastName }} ({{ user.username }})</option>
                 </select>
             </div>
         </header>
         <main>
-            <h2 v-if="searchTerm !== ''">Posts containing the word "{{ searchTerm }}"</h2>
+            <h2 v-if="searchTerm !== ''">{{ posts.length }} Posts containing the word "{{ searchTerm }}"</h2>
+            <h2 v-if="userData !== ''">{{ posts.length }} Posts from User {{ userData[1] }}</h2>
             <div class="article-container">
                 <article class="post" v-for="post in posts" :key="post.id">
                     <h2 class="post__title">{{ post.title }}</h2>
