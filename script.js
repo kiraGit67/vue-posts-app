@@ -31,7 +31,7 @@ createApp({
       searchTerm: "",
       posts: [],
       users: [],
-      userID: "",
+      userData: "",
     };
   },
   async mounted() {
