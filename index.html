@@ -13,12 +13,15 @@
     <div id="app">
         <header>
             <h1>{{ h1title }}</h1>
-            <input type="search" name="search-posts" id="search-posts" placeholder="Search for..." v-model="searchTerm"
-                @input="fetchPosts(`/search?q=${searchTerm}`)">
-            <select name="filter-by-user" id="filter-by-user" v-model="userID" @change="fetchPosts(`/user/${userID}`)">
-                <option v-for="user in users" :key="user.id" :value="user.id">{{ user.id }}) {{ user.firstName }} {{
-                    user.lastName }} ({{ user.username }})</option>
-            </select>
+            <div class="header-row">
+                <input type="search" name="search-posts" id="search-posts" placeholder="Search for..."
+                    v-model="searchTerm" @input="fetchPosts(`/search?q=${searchTerm}`)">
+                <select name="filter-by-user" id="filter-by-user" aria-placeholder="Filter by User" v-model="userID"
+                    @change="fetchPosts(`/user/${userID}`)">
+                    <option v-for="user in users" :key="user.id" :value="user.id">{{ user.id }}) {{ user.firstName }} {{
+                        user.lastName }} ({{ user.username }})</option>
+                </select>
+            </div>
         </header>
         <main>
             <h2 v-if="searchTerm !== ''">Posts containing the word "{{ searchTerm }}"</h2>
