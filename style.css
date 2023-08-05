@@ -170,6 +170,24 @@ details > .comments {
   .article-container {
     grid-template-columns: repeat(3, 1fr);
   }
+
+  header {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  header > h1 {
+    text-align: center;
+  }
+
+  .header-row {
+    width: 75%;
+  }
+
+  input,
+  select {
+    width: 100%;
+  }
 }
 
 @media screen and (min-width: 1280px) {
