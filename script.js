@@ -30,6 +30,8 @@ createApp({
       h1title: "Posts-App",
       searchTerm: "",
       posts: [],
+      users: [],
+      userID: "",
     };
   },
   async mounted() {
