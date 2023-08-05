@@ -15,6 +15,10 @@
             <h1>{{ h1title }}</h1>
             <input type="search" name="search-posts" id="search-posts" placeholder="Search for..." v-model="searchTerm"
                 @input="fetchPosts(`/search?q=${searchTerm}`)">
+            <select name="filter-by-user" id="filter-by-user" v-model="userID" @change="fetchPosts(`/user/${userID}`)">
+                <option v-for="user in users" :key="user.id" :value="user.id">{{ user.id }}) {{ user.firstName }} {{
+                    user.lastName }} ({{ user.username }})</option>
+            </select>
         </header>
         <main>
             <h2 v-if="searchTerm !== ''">Posts containing the word "{{ searchTerm }}"</h2>
