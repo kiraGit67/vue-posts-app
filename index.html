@@ -25,8 +25,12 @@
             </div>
         </header>
         <main>
-            <h2 v-if="searchTerm !== ''">{{ posts.length }} Posts containing the word "{{ searchTerm }}"</h2>
-            <h2 v-if="userData !== ''">{{ posts.length }} Posts from User {{ userData[1] }}</h2>
+            <h2 v-if="searchTerm !== ''">{{ posts.length }} Post<span
+                    v-if="posts.length > 1 || posts.length === 0">s</span> containing the
+                word "{{ searchTerm }}"</h2>
+            <h2 v-if="userData !== ''">{{ posts.length }} Post<span
+                    v-if="posts.length > 1 || posts.length === 0">s</span> from User {{
+                userData[1] }}</h2>
             <div class="article-container">
                 <article class="post" v-for="post in posts" :key="post.id">
                     <h2 class="post__title">{{ post.title }}</h2>
