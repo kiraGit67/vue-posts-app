@@ -21,7 +21,8 @@ header {
   color: white;
 }
 
-input {
+input,
+select {
   width: 100%;
   font-size: 1.2rem;
   padding: 0.5rem 0.75rem;
@@ -45,6 +46,7 @@ h2 {
 h1 {
   font-size: 2.5rem;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+  text-align: center;
 }
 
 main {
@@ -135,16 +137,15 @@ details > .comments {
 }
 
 @media screen and (min-width: 768px) {
-  header {
+  header > .header-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    _padding: 1rem 1.5rem;
-    _background-color: #0bade3;
-    _color: white;
+    gap: 1.5rem;
   }
 
-  input {
+  input,
+  select {
     width: 50%;
   }
 
