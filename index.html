@@ -34,7 +34,7 @@
                         <div class="comments">
                             <article class="comment" v-for="comment in post.comments" :key="comment.id">
                                 <p class="comment__text">{{ comment.body }}</p>
-                                <cite class="comment__user">{{ comment.user.username }}</cite>
+                                <cite class="comment__user">{{ comment.user.id }} {{ comment.user.username }}</cite>
                             </article>
                         </div>
                     </details>
